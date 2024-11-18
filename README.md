@@ -33,3 +33,24 @@ php artisan serve
 ```
 
 You can now access the application at `http://localhost:8000`.
+
+
+## test users
+
+User 1
+
+    Name: John Doe
+    Email: john.doe@example.com
+    Password: password123
+
+User 2
+
+    Name: Jane Smith
+    Email: jane.smith@example.com
+    Password: secure456
+
+User 3
+
+    Name: Alice Johnson
+    Email: alice.johnson@example.com
+    Password: test12345

@@ -33,4 +33,24 @@ class Wizkidcontroller extends Controller
     {
         return view('wizkids.delete');
     }
+
+    public function store(Request $request)
+    {
+        // Validate the request...
+        $validated = $request->validate([
+            'name' => 'required|unique:wizkids|max:255',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $wizkid = new Wizkidcontroller;
+
+        $wizkid->name = $validated['name'];
+        $wizkid->email = $validated['email'];
+        $wizkid->roll = $validated['roll'];
+
+        $wizkid->save();
+
+        return redirect('/wizkids');
+    }
 }

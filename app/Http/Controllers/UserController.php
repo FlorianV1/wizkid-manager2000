@@ -2,20 +2,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // Show all users
     public function index()
     {
-        $users = User::all();  // Retrieve all users
-        return view('dashboard', compact('users'));  // Pass 'users' variable to the view
+        $users = User::all();
+        return view('dashboard', compact('users'));
     }
-
-    // Show a single user
     public function show($id)
     {
-        $user = User::find($id);  // Retrieve a single user
-        return view('users.show', compact('user'));  // Pass 'user' variable to the view
+        $user = User::find($id);
+        return view('users.show', compact('user'));
+    }
+    public function edit(User $user)
+    {
+        return view('wizkids.edit', ['wizkid' => $user]);
+    }
+    public function update(Request $request, User $user)
+    {
+        $user->update($request->all());
+        return redirect()->route('dashboard', $user)->with('success', 'User updated successfully');
     }
 }

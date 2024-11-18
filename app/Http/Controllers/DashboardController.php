@@ -10,8 +10,7 @@ class DashboardController extends Controller
     {
         // Example: Retrieve user data to show on the dashboard
         $users = User::all();  // You can add more logic here as needed
-
         // Pass the data to the dashboard view
-        return view('dashboard.index', compact('users'));
+        return view('dashboard', compact('users'));
     }
 }
