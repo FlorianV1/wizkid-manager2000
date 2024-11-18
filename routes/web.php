@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,11 +28,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('wizkids/{id}', [ProfileController::class, 'show'])->name('wizkids.show');
-//     Route::get('wizkids/create', [ProfileController::class, 'create'])->name('wizkids.create');
-//     Route::get(uri: 'wizkids/edit', [ProfileController::class, 'edit'])->name('wizkids.edit');
-//     Route::post('wizkids', [ProfileController::class, 'index'])->name('wizkids.index');
-//     Route::get(uri: 'wizkids/delete', [ProfileController::class, 'delete'])->name('wizkids.delete');
-// });
+    Route::get('/users', [UserController::class, 'index'])->name('dashboard.index');
+
+    Route::get('/create', function () {
+        return view('wizkids.create');
+    })->name('create');
+
+    Route::get('/create/{id}', function ($id) {
+        return view('wizkids.create');
+    })->name('create');
+
+    Route::post('/create', [UserController::class, 'store'])->name('users.store');
+
 require __DIR__.'/auth.php';
