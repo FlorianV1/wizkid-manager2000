@@ -28,4 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Route::middleware('auth')->group(function () {
+//     Route::get('wizkids/{id}', [ProfileController::class, 'show'])->name('wizkids.show');
+//     Route::get('wizkids/create', [ProfileController::class, 'create'])->name('wizkids.create');
+//     Route::get(uri: 'wizkids/edit', [ProfileController::class, 'edit'])->name('wizkids.edit');
+//     Route::post('wizkids', [ProfileController::class, 'index'])->name('wizkids.index');
+//     Route::get(uri: 'wizkids/delete', [ProfileController::class, 'delete'])->name('wizkids.delete');
+// });
 require __DIR__.'/auth.php';
